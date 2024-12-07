@@ -1,10 +1,11 @@
 Spaceship bob = new Spaceship();
 Star[] sue = new Star[100];
+ArrayList <Asteroid> arrList = new ArrayList <Asteroid>();
 boolean isAccelerating = false;
 boolean isRotatingLeft = false;
 boolean isRotatingRight = false;
 boolean isHyperspace = false;
-int countdown = 100;
+int countdown = 50;
 
 void setup()
 {
@@ -13,6 +14,10 @@ void setup()
   for(int i = 0; i < sue.length; i++)
   { 
     sue[i] = new Star();
+  }
+  for (int i = 0; i < 20; i++)
+  {
+    arrList.add(new Asteroid());
   }
 }
 
@@ -42,9 +47,17 @@ void draw()
     bob.setPointDirection((int)(Math.random() * 360));
     bob.setDirectionX(0);
     bob.setDirectionY(0);
-    countdown = 100;
+    countdown = 50;
     }
   }
+ for (int i = 0; i < arrList.size(); i++)
+ { 
+   arrList.get(i).show();
+   arrList.get(i).move();
+   float d = dist(arrList.get(i).getX(), arrList.get(i).getY(), bob.getX(), bob.getY());
+   if (d<40)
+     arrList.remove(i);
+ }
 }
 
 public void keyPressed()
