@@ -55,8 +55,11 @@ void draw()
    arrList.get(i).show();
    arrList.get(i).move();
    float d = dist(arrList.get(i).getX(), arrList.get(i).getY(), bob.getX(), bob.getY());
-   if (d<40)
+   if (d<40){
      arrList.remove(i);
+    i--;
+    arrList.add(new Asteroid());
+   }
  }
 }
 
