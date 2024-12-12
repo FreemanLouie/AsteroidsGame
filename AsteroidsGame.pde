@@ -1,5 +1,6 @@
 Spaceship bob = new Spaceship();
 Star[] sue = new Star[100];
+ArrayList <Bullet> bull = new ArrayList <Bullet>();
 ArrayList <Asteroid> arrList = new ArrayList <Asteroid>();
 boolean isAccelerating = false;
 boolean isRotatingLeft = false;
@@ -30,6 +31,11 @@ void draw()
   }
   bob.show(); 
   bob.move();
+  for(int i = 0; i < bull.size(); i++)
+  { 
+    bull.get(i).show();
+    bull.get(i).move();
+  }
   if (isAccelerating == true)
     bob.accelerate(.1);
   if (isRotatingLeft == true)
@@ -61,6 +67,18 @@ void draw()
     arrList.add(new Asteroid());
    }
  }
+ for (int i = 0; i < arrList.size(); i++)
+ { 
+   for (int j = 0; j < bull.size(); j++)
+   {
+   float a = dist(arrList.get(i).getX(), arrList.get(i).getY(), bull.get(j).getX(), bull.get(j).getY());
+     if (a<60){
+       arrList.remove(i);
+       bull.remove(j);
+       arrList.add(new Asteroid());
+     }
+   }
+ }
 }
 
 public void keyPressed()
@@ -74,9 +92,12 @@ public void keyPressed()
   if(key == 'd'){
     isRotatingRight = true;
   }  
-  if(key == 'e'){
+  if(key == 'q'){
     isHyperspace = true;
-  }  
+  }   
+  if(key == 'e'){
+    bull.add(new Bullet(bob));  
+  }   
 }
 
 public void keyReleased()
@@ -90,8 +111,8 @@ public void keyReleased()
   if(key == 'd'){
     isRotatingRight = false;
   }  
-  if(key == 'e'){
+  if(key == 'q'){
     isHyperspace = false;
     countdown = 100;
-  }  
+  }
 }
