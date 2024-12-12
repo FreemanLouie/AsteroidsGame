@@ -72,7 +72,7 @@ void draw()
    for (int j = 0; j < bull.size(); j++)
    {
    float a = dist(arrList.get(i).getX(), arrList.get(i).getY(), bull.get(j).getX(), bull.get(j).getY());
-     if (a<60){
+     if (a<40){
        arrList.remove(i);
        bull.remove(j);
        arrList.add(new Asteroid());
