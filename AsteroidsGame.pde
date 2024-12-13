@@ -76,6 +76,7 @@ void draw()
        arrList.remove(i);
        bull.remove(j);
        arrList.add(new Asteroid());
+       j--;
      }
    }
  }
